@@ -8,8 +8,38 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Disciplix - Orzular Sari Yo'l",
-  description: "Disciplix AI yordamida xarajatlaringizni nazorat qiladi va maqsadlaringizga erishishga yordam beradi.",
+  metadataBase: new URL("https://disciplix.uz"),
+  title: {
+    default: "Disciplix - AI Moliya va Maqsadlar Yordamchisi",
+    template: "%s | Disciplix"
+  },
+  description: "Disciplix AI yordamida xarajatlaringizni nazorat qiling, byudjetni rejalashtiring va orzularingizga tezroq erishing. Aqlli moliya yordamchisi.",
+  keywords: ["disciplix", "moliya", "byudjet nazorati", "telegram bot", "xarajatlar", "ai yordamchi", "orzular"],
+  authors: [{ name: "Disciplix Team" }],
+  openGraph: {
+    title: "Disciplix - AI Moliya Yordamchisi",
+    description: "Xarajatlaringizni nazorat qiling va orzularingizga erishing.",
+    url: "https://disciplix.uz",
+    siteName: "Disciplix",
+    locale: "uz_UZ",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Disciplix - AI Moliya Yordamchisi",
+    description: "Xarajatlaringizni nazorat qiling va orzularingizga erishing.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -65,10 +65,15 @@ export default function LandingPage() {
     { role: 'user', text: 'Bugun kafega 80 ming ishlatdim' },
     { role: 'bot', type: 'expense' }
   ])
-  const chatEndRef = useRef<HTMLDivElement>(null)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    }
   }, [chatMessages])
 
   const handleSendMessage = () => {
@@ -515,7 +520,7 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="p-6 space-y-4 h-72 overflow-y-auto scrollbar-none bg-[#F8F9FB]/50">
+                <CardContent ref={chatContainerRef} className="p-6 space-y-4 h-72 overflow-y-auto scrollbar-none bg-[#F8F9FB]/50">
                   {chatMessages.map((msg, idx) => (
                     msg.role === 'user' ? (
                       <motion.div key={idx} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex justify-end">
@@ -541,7 +546,6 @@ export default function LandingPage() {
                       </motion.div>
                     )
                   ))}
-                  <div ref={chatEndRef} />
                 </CardContent>
                 <CardFooter className="border-t border-gray-50 p-4 bg-white">
                   <div className="w-full relative">
