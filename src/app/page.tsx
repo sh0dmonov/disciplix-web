@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { 
   Bot, 
@@ -60,6 +60,30 @@ const COLORS = ['#10B981', '#0EA5E9', '#F59E0B', '#6366F1']
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState('Dashboard')
+  const [chatInput, setChatInput] = useState('')
+  const [chatMessages, setChatMessages] = useState<any[]>([
+    { role: 'user', text: 'Bugun kafega 80 ming ishlatdim' },
+    { role: 'bot', type: 'expense' }
+  ])
+  const chatEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [chatMessages])
+
+  const handleSendMessage = () => {
+    if(!chatInput.trim()) return;
+    const newMsg = { role: 'user', text: chatInput };
+    setChatMessages(prev => [...prev, newMsg]);
+    setChatInput('');
+    
+    setTimeout(() => {
+      setChatMessages(prev => [...prev, {
+        role: 'bot',
+        type: 'promo'
+      }])
+    }, 800)
+  }
 
   const renderDashboardContent = () => {
     switch(activeTab) {
@@ -207,7 +231,7 @@ export default function LandingPage() {
                 <CardContent className="h-64 m-6 mt-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
-                      <Pie data={pieData} cx="50%" cy="50%" innerRadius={65} outerRadius={85} paddingAngle={4} dataKey="value" stroke="none">
+                      <Pie data={pieData} cx="50%" cy="50%" innerRadius={55} outerRadius={75} paddingAngle={4} dataKey="value" stroke="none">
                         {pieData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
@@ -492,22 +516,46 @@ export default function LandingPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="p-6 space-y-4 h-72 overflow-y-auto scrollbar-none bg-[#F8F9FB]/50">
-                  <div className="flex justify-end">
-                    <div className="bg-[#10B981] text-white px-5 py-3 rounded-2xl rounded-tr-sm text-[15px] max-w-[80%] font-medium shadow-[0_4px_15px_rgba(16,185,129,0.2)]">
-                      Bugun kafega 80 ming ishlatdim
-                    </div>
-                  </div>
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex justify-start">
-                    <div className="bg-white text-[#1A1D1E] px-5 py-4 rounded-2xl rounded-tl-sm text-[15px] max-w-[85%] space-y-2 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] font-medium">
-                      <p>✅ 80,000 UZS <b className="text-[#10B981]">"Oziq-ovqat"</b> kategoriyasiga xarajat sifatida yozildi.</p>
-                      <p className="text-xs text-gray-500 leading-relaxed mt-2">Sizning bugungi limitingiz 120,000 UZS edi. Kunlik limitingizdan 40,000 UZS qoldi. Yaxshi ketyapsiz!</p>
-                    </div>
-                  </motion.div>
+                  {chatMessages.map((msg, idx) => (
+                    msg.role === 'user' ? (
+                      <motion.div key={idx} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex justify-end">
+                        <div className="bg-[#10B981] text-white px-5 py-3 rounded-2xl rounded-tr-sm text-[15px] max-w-[80%] font-medium shadow-[0_4px_15px_rgba(16,185,129,0.2)]">
+                          {msg.text}
+                        </div>
+                      </motion.div>
+                    ) : msg.type === 'expense' ? (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex justify-start">
+                        <div className="bg-white text-[#1A1D1E] px-5 py-4 rounded-2xl rounded-tl-sm text-[15px] max-w-[85%] space-y-2 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] font-medium">
+                          <p>✅ 80,000 UZS <b className="text-[#10B981]">"Oziq-ovqat"</b> kategoriyasiga xarajat sifatida yozildi.</p>
+                          <p className="text-xs text-gray-500 leading-relaxed mt-2">Sizning bugungi limitingiz 120,000 UZS edi. Kunlik limitingizdan 40,000 UZS qoldi. Yaxshi ketyapsiz!</p>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
+                        <div className="bg-white text-[#1A1D1E] px-5 py-4 rounded-2xl rounded-tl-sm text-[15px] max-w-[85%] space-y-3 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] font-medium">
+                          <p>Mendan to'liq foydalanish va ma'lumotlarni saqlash uchun Telegram botimizga tashrif buyuring! 🤖</p>
+                          <Link href="https://t.me/disciplixbot" className="block w-full">
+                            <Button size="sm" className="w-full bg-[#10B981] hover:bg-[#059669] text-white rounded-xl shadow-sm">Telegram Botga o'tish</Button>
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )
+                  ))}
+                  <div ref={chatEndRef} />
                 </CardContent>
                 <CardFooter className="border-t border-gray-50 p-4 bg-white">
                   <div className="w-full relative">
-                    <input type="text" placeholder="Xabar yozish..." className="w-full bg-[#F8F9FB] border border-gray-200 rounded-full px-5 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all text-[#1A1D1E]" disabled />
-                    <Send className="w-5 h-5 text-[#10B981] absolute right-4 top-3" />
+                    <input 
+                      type="text" 
+                      placeholder="Xabar yozish..." 
+                      className="w-full bg-[#F8F9FB] border border-gray-200 rounded-full px-5 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all text-[#1A1D1E]" 
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                    />
+                    <button onClick={handleSendMessage} className="absolute right-4 top-3 outline-none">
+                      <Send className="w-5 h-5 text-[#10B981] hover:text-[#059669] transition-colors cursor-pointer" />
+                    </button>
                   </div>
                 </CardFooter>
               </Card>
@@ -564,7 +612,7 @@ export default function LandingPage() {
         </section>
 
         {/* 8. Final CTA Section */}
-        <section className="py-32 relative text-center bg-[#F8F9FB]">
+        <section className="py-20 relative text-center bg-[#F8F9FB]">
           <div className="container mx-auto px-6 relative z-10">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-[#1A1D1E]">Bugundan moliyaviy intizomni boshlang</h2>
             <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-10">
@@ -582,7 +630,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white py-12">
+      <footer className="border-t border-gray-200 bg-white py-8">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           <div className="space-y-4 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2">
@@ -595,25 +643,25 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
             <div className="space-y-3 flex flex-col">
               <span className="font-extrabold text-[#1A1D1E]">Mahsulot</span>
-              <Link href="#" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Xususiyatlar</Link>
-              <Link href="#" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Tariflar</Link>
+              <Link href="#features" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Xususiyatlar</Link>
+              <Link href="#pricing" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Tariflar</Link>
             </div>
             <div className="space-y-3 flex flex-col">
               <span className="font-extrabold text-[#1A1D1E]">Qonuniy</span>
-              <Link href="#" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Maxfiylik siyosati</Link>
-              <Link href="#" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Foydalanish shartlari</Link>
+              <Link href="https://t.me/disciplixbot" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Maxfiylik siyosati</Link>
+              <Link href="https://t.me/disciplixbot" className="font-medium text-gray-500 hover:text-[#10B981] transition-colors">Foydalanish shartlari</Link>
             </div>
             <div className="space-y-3 flex flex-col col-span-2 md:col-span-1">
               <span className="font-extrabold text-[#1A1D1E]">Ijtimoiy tarmoqlar</span>
               <div className="flex justify-center md:justify-start space-x-4">
-                <Link href="#" className="text-gray-400 hover:text-[#10B981] transition-colors"><Camera className="w-5 h-5" /></Link>
-                <Link href="#" className="text-gray-400 hover:text-[#10B981] transition-colors"><Send className="w-5 h-5" /></Link>
-                <Link href="#" className="text-gray-400 hover:text-[#10B981] transition-colors"><Globe className="w-5 h-5" /></Link>
+                <Link href="https://instagram.com" className="text-gray-400 hover:text-[#10B981] transition-colors"><Camera className="w-5 h-5" /></Link>
+                <Link href="https://t.me/disciplixbot" className="text-gray-400 hover:text-[#10B981] transition-colors"><Send className="w-5 h-5" /></Link>
+                <Link href="https://t.me/disciplixbot" className="text-gray-400 hover:text-[#10B981] transition-colors"><Globe className="w-5 h-5" /></Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-6 mt-12 pt-8 border-t border-gray-100 text-center text-sm font-bold text-gray-400">
+        <div className="container mx-auto px-6 mt-8 pt-6 border-t border-gray-100 text-center text-sm font-bold text-gray-400">
           © {new Date().getFullYear()} Disciplix. Barcha huquqlar himoyalangan.
         </div>
       </footer>
