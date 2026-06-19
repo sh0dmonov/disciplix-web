@@ -313,40 +313,42 @@ export default function LandingPage() {
 
           <motion.div 
             initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:w-1/2 mt-16 lg:mt-0 relative z-10"
+            className="lg:w-1/2 mt-16 lg:mt-0 relative z-10 w-full"
           >
-            <div className="relative rounded-[32px] bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transform md:rotate-1 md:hover:rotate-0 transition-transform duration-500 border border-gray-100 max-w-md mx-auto w-full overflow-hidden sm:overflow-visible">
-              <div className="rounded-[24px] overflow-hidden bg-[#F8F9FB] border border-gray-100 relative">
-                {/* Mockup Topbar */}
-                <div className="h-10 bg-white border-b border-gray-100 flex items-center px-4 space-x-2">
+            <div className="relative rounded-[32px] bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transform lg:rotate-1 lg:hover:rotate-0 transition-transform duration-500 border border-gray-100 max-w-2xl mx-auto w-full overflow-hidden sm:overflow-visible">
+              <div className="rounded-[24px] overflow-hidden bg-[#F8F9FB] border border-gray-100 relative min-h-[300px] flex flex-col">
+                {/* Mockup Topbar (macOS style) */}
+                <div className="h-10 bg-white border-b border-gray-100 flex items-center px-4 space-x-2 shrink-0">
                   <div className="w-3 h-3 rounded-full bg-red-400"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                   <div className="w-3 h-3 rounded-full bg-[#10B981]"></div>
                 </div>
-                {/* Mockup Content */}
-                <div className="p-5 grid grid-cols-2 gap-3">
-                  <Card className="col-span-2 md:col-span-1 bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 border-none shadow-sm rounded-2xl">
-                    <CardHeader className="pb-1 px-3 md:px-4 pt-3 md:pt-4">
-                      <CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">Jami Balans</CardTitle>
+                {/* Mockup Content (Desktop layout) */}
+                <div className="p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1">
+                  <Card className="col-span-1 bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 border-none shadow-sm rounded-2xl flex flex-col justify-center">
+                    <CardHeader className="pb-1 px-4 pt-4">
+                      <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">Jami Balans</CardTitle>
                     </CardHeader>
-                    <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
-                      <div className="text-xl md:text-2xl font-extrabold text-[#1A1D1E]">12.5M <span className="text-xs md:text-sm font-medium text-gray-500">UZS</span></div>
+                    <CardContent className="px-4 pb-4">
+                      <div className="text-2xl font-extrabold text-[#1A1D1E]">12.5M <span className="text-sm font-medium text-gray-500">UZS</span></div>
                     </CardContent>
                   </Card>
-                  <Card className="col-span-2 md:col-span-1 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
-                    <CardHeader className="pb-1 px-3 md:px-4 pt-3 md:pt-4">
-                      <CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">Tejamkorlik</CardTitle>
+                  
+                  <Card className="col-span-1 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl flex flex-col justify-center">
+                    <CardHeader className="pb-1 px-4 pt-4">
+                      <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">Tejamkorlik</CardTitle>
                     </CardHeader>
-                    <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
-                      <div className="text-xl md:text-2xl font-extrabold text-[#10B981]">+4.6M</div>
+                    <CardContent className="px-4 pb-4">
+                      <div className="text-2xl font-extrabold text-[#10B981]">+4.6M</div>
                     </CardContent>
                   </Card>
-                  <Card className="col-span-2 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl mt-2">
-                    <CardHeader className="pb-2 px-4 pt-4">
+                  
+                  <Card className="col-span-1 sm:col-span-2 lg:col-span-1 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
+                    <CardHeader className="pb-2 px-4 pt-4 border-b border-gray-50">
                       <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">Bugungi Xarajatlar</CardTitle>
                     </CardHeader>
-                    <CardContent className="px-4 pb-4 space-y-3">
-                      <div className="flex justify-between items-center py-2 border-b border-gray-50">
+                    <CardContent className="px-4 py-3 space-y-3">
+                      <div className="flex justify-between items-center py-1">
                         <div className="flex items-center text-sm font-bold text-[#1A1D1E]">
                           <div className="w-8 h-8 rounded-full bg-[#0EA5E9]/10 flex items-center justify-center mr-3">
                             <PieChartIcon className="w-4 h-4 text-[#0EA5E9]" />
@@ -355,7 +357,7 @@ export default function LandingPage() {
                         </div>
                         <span className="text-sm font-bold text-[#1A1D1E]">-50,000</span>
                       </div>
-                      <div className="flex justify-between items-center py-2">
+                      <div className="flex justify-between items-center py-1">
                         <div className="flex items-center text-sm font-bold text-[#1A1D1E]">
                           <div className="w-8 h-8 rounded-full bg-[#F59E0B]/10 flex items-center justify-center mr-3">
                             <PieChartIcon className="w-4 h-4 text-[#F59E0B]" />
