@@ -212,8 +212,8 @@ export default function LandingPage() {
                 { title: "Tejamkorlik Darajasi", val: "57%", color: "text-[#0EA5E9]" }
               ].map((stat, i) => (
                 <Card key={i} className="bg-[#F8F9FB] border-none shadow-none rounded-[20px]">
-                  <CardHeader className="p-5 pb-2"><CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">{stat.title}</CardTitle></CardHeader>
-                  <CardContent className="p-5 pt-0"><div className={`text-2xl font-extrabold ${stat.color}`}>{stat.val}</div></CardContent>
+                  <CardHeader className="p-4 md:p-5 pb-2"><CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">{stat.title}</CardTitle></CardHeader>
+                  <CardContent className="p-4 md:p-5 pt-0"><div className={`text-xl md:text-2xl font-extrabold ${stat.color}`}>{stat.val}</div></CardContent>
                 </Card>
               ))}
             </div>
@@ -326,19 +326,19 @@ export default function LandingPage() {
                 {/* Mockup Content */}
                 <div className="p-5 grid grid-cols-2 gap-3">
                   <Card className="col-span-2 md:col-span-1 bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 border-none shadow-sm rounded-2xl">
-                    <CardHeader className="pb-1 px-4 pt-4">
-                      <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">Jami Balans</CardTitle>
+                    <CardHeader className="pb-1 px-3 md:px-4 pt-3 md:pt-4">
+                      <CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">Jami Balans</CardTitle>
                     </CardHeader>
-                    <CardContent className="px-4 pb-4">
-                      <div className="text-2xl font-extrabold text-[#1A1D1E]">12.5M <span className="text-sm font-medium text-gray-500">UZS</span></div>
+                    <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
+                      <div className="text-xl md:text-2xl font-extrabold text-[#1A1D1E]">12.5M <span className="text-xs md:text-sm font-medium text-gray-500">UZS</span></div>
                     </CardContent>
                   </Card>
                   <Card className="col-span-2 md:col-span-1 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl">
-                    <CardHeader className="pb-1 px-4 pt-4">
-                      <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">Tejamkorlik</CardTitle>
+                    <CardHeader className="pb-1 px-3 md:px-4 pt-3 md:pt-4">
+                      <CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">Tejamkorlik</CardTitle>
                     </CardHeader>
-                    <CardContent className="px-4 pb-4">
-                      <div className="text-2xl font-extrabold text-[#10B981]">+4.6M</div>
+                    <CardContent className="px-3 md:px-4 pb-3 md:pb-4">
+                      <div className="text-xl md:text-2xl font-extrabold text-[#10B981]">+4.6M</div>
                     </CardContent>
                   </Card>
                   <Card className="col-span-2 border-none bg-white shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-2xl mt-2">
@@ -370,19 +370,19 @@ export default function LandingPage() {
               </div>
               
               {/* Floating Elements */}
-              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -right-6 top-12 bg-white rounded-[20px] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center space-x-3 border border-gray-100">
-                <div className="p-2.5 rounded-full bg-[#10B981]/10 text-[#10B981]"><CheckCircle className="w-5 h-5" /></div>
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute right-0 md:-right-6 top-6 md:top-12 scale-90 md:scale-100 origin-right bg-white/95 backdrop-blur-md rounded-[20px] p-3 md:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center space-x-3 border border-gray-100 z-20">
+                <div className="p-2.5 rounded-full bg-[#10B981]/10 text-[#10B981]"><CheckCircle className="w-4 h-4 md:w-5 md:h-5" /></div>
                 <div>
-                  <div className="text-sm font-extrabold text-[#1A1D1E]">Maqsadga erishildi</div>
-                  <div className="text-xs font-medium text-gray-500">Yangi Noutbuk</div>
+                  <div className="text-xs md:text-sm font-extrabold text-[#1A1D1E]">Maqsadga erishildi</div>
+                  <div className="text-[10px] md:text-xs font-medium text-gray-500">Yangi Noutbuk</div>
                 </div>
               </motion.div>
               
-              <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 5 }} className="absolute -left-6 bottom-16 bg-white rounded-[20px] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center space-x-3 border border-gray-100">
-                <div className="p-2.5 rounded-full bg-indigo-50 text-indigo-500"><Bot className="w-5 h-5" /></div>
+              <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 5 }} className="absolute left-0 md:-left-6 bottom-12 md:bottom-16 scale-90 md:scale-100 origin-left bg-white/95 backdrop-blur-md rounded-[20px] p-3 md:p-4 shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center space-x-3 border border-gray-100 z-20">
+                <div className="p-2.5 rounded-full bg-indigo-50 text-indigo-500"><Bot className="w-4 h-4 md:w-5 md:h-5" /></div>
                 <div>
-                  <div className="text-sm font-extrabold text-[#1A1D1E]">AI Maslahat</div>
-                  <div className="text-xs font-medium text-gray-500">Yaxshi ketyapsiz!</div>
+                  <div className="text-xs md:text-sm font-extrabold text-[#1A1D1E]">AI Maslahat</div>
+                  <div className="text-[10px] md:text-xs font-medium text-gray-500">Yaxshi ketyapsiz!</div>
                 </div>
               </motion.div>
             </div>
