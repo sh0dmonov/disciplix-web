@@ -9,21 +9,20 @@ import {
   Wallet, 
   MessageSquare, 
   Smartphone,
-  ChevronRight,
   CheckCircle,
   Star,
   Globe,
   Camera,
   Send,
   PieChart as PieChartIcon,
-  Calendar,
   Lock,
   ArrowRight
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import Link from "next/link"
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts"
+import Image from "next/image"
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts"
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -58,10 +57,16 @@ const pieData = [
 ]
 const COLORS = ['#10B981', '#0EA5E9', '#F59E0B', '#6366F1']
 
+interface ChatMessage {
+  role: 'user' | 'bot'
+  text?: string
+  type?: 'expense' | 'promo'
+}
+
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState('Dashboard')
   const [chatInput, setChatInput] = useState('')
-  const [chatMessages, setChatMessages] = useState<any[]>([
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     { role: 'user', text: 'Bugun kafega 80 ming ishlatdim' },
     { role: 'bot', type: 'expense' }
   ])
@@ -78,15 +83,16 @@ export default function LandingPage() {
 
   const handleSendMessage = () => {
     if(!chatInput.trim()) return;
-    const newMsg = { role: 'user', text: chatInput };
+    const newMsg: ChatMessage = { role: 'user', text: chatInput };
     setChatMessages(prev => [...prev, newMsg]);
     setChatInput('');
     
     setTimeout(() => {
-      setChatMessages(prev => [...prev, {
+      const botMsg: ChatMessage = {
         role: 'bot',
         type: 'promo'
-      }])
+      };
+      setChatMessages(prev => [...prev, botMsg]);
     }, 800)
   }
 
@@ -134,14 +140,14 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-[24px]">
                 <CardHeader>
-                  <CardTitle className="text-lg font-extrabold text-[#1A1D1E]">Shaxsiy Ma'lumotlar</CardTitle>
+                  <CardTitle className="text-lg font-extrabold text-[#1A1D1E]">{"Shaxsiy Ma'lumotlar"}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-20 h-20 rounded-full bg-[#F8F9FB] overflow-hidden border-2 border-gray-100">
-                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin&backgroundColor=10B981" alt="avatar" className="w-full h-full object-cover" />
+                      <Image src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin&backgroundColor=10B981" alt="avatar" width={80} height={80} unoptimized className="w-full h-full object-cover" />
                     </div>
-                    <Button variant="outline" className="rounded-full border-gray-200 font-bold text-gray-600">Rasm o'zgartirish</Button>
+                    <Button variant="outline" className="rounded-full border-gray-200 font-bold text-gray-600">{"Rasm o'zgartirish"}</Button>
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Ism Familiya</label>
@@ -187,10 +193,10 @@ export default function LandingPage() {
              <div className="w-20 h-20 bg-[#F8F9FB] rounded-full flex items-center justify-center mb-6">
                 <Lock className="w-8 h-8 text-[#10B981]" />
              </div>
-             <h3 className="text-2xl font-extrabold text-[#1A1D1E] mb-2">{activeTab} bo'limi</h3>
-             <p className="text-gray-500 font-medium mb-4">To'liq imkoniyatlarni ko'rish va batafsil ma'lumot olish uchun Telegram botimizga o'ting!</p>
-             <Link href="https://t.me/disciplixbot">
-               <Button className="rounded-full bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_4px_15px_rgba(16,185,129,0.25)] border-none">Telegram Botga o'tish</Button>
+             <h3 className="text-2xl font-extrabold text-[#1A1D1E] mb-2">{activeTab} {"bo'limi"}</h3>
+             <p className="text-gray-500 font-medium mb-4">{"To'liq imkoniyatlarni ko'rish va batafsil ma'lumot olish uchun Telegram botimizga o'ting!"}</p>
+             <Link href="https://t.me/disciplixbot" className="inline-flex items-center justify-center rounded-full bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_4px_15px_rgba(16,185,129,0.25)] h-10 px-6 text-sm">
+               {"Telegram Botga o'tish"}
              </Link>
           </div>
         )
@@ -232,18 +238,28 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
               <Card className="col-span-1 bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-[24px]">
-                <CardHeader className="p-6 pb-2"><CardTitle className="text-lg font-extrabold text-[#1A1D1E]">Kategoriyalar</CardTitle></CardHeader>
-                <CardContent className="h-64 m-6 mt-0">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie data={pieData} cx="50%" cy="50%" innerRadius={55} outerRadius={75} paddingAngle={4} dataKey="value" stroke="none">
-                        {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip contentStyle={{backgroundColor: '#fff', border: '1px solid #E5E7EB', borderRadius: '12px', color: '#1A1D1E', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(0,0,0,0.05)'}} />
-                    </PieChart>
-                  </ResponsiveContainer>
+                <CardHeader className="p-6 pb-2"><CardTitle className="text-lg font-extrabold text-[#1A1D1E]">{"Kategoriyalar"}</CardTitle></CardHeader>
+                <CardContent className="m-6 mt-0 flex flex-col items-center">
+                  <div className="h-44 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie data={pieData} cx="50%" cy="50%" innerRadius={45} outerRadius={65} paddingAngle={4} dataKey="value" stroke="none">
+                          {pieData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip contentStyle={{backgroundColor: '#fff', border: '1px solid #E5E7EB', borderRadius: '12px', color: '#1A1D1E', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(0,0,0,0.05)'}} />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mt-4 w-full text-xs font-bold text-gray-500">
+                    {pieData.map((entry, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+                        <span className="truncate">{entry.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -273,8 +289,12 @@ export default function LandingPage() {
             <Link href="#pricing" className="hover:text-[#10B981] transition-colors">Tariflar</Link>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="https://t.me/disciplixbot"><Button variant="ghost" className="hidden md:flex text-gray-600 font-semibold hover:bg-gray-100 hover:text-[#10B981]">Kirish</Button></Link>
-            <Link href="https://t.me/disciplixbot"><Button className="rounded-full px-4 md:px-6 h-9 md:h-10 text-sm md:text-base bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_4px_15px_rgba(16,185,129,0.25)]">Boshlash</Button></Link>
+            <Link href="https://t.me/disciplixbot" className="hidden md:flex items-center justify-center px-4 py-2 text-gray-600 font-semibold hover:bg-gray-100 hover:text-[#10B981] rounded-md transition-colors text-sm">
+              {"Kirish"}
+            </Link>
+            <Link href="https://t.me/disciplixbot" className="inline-flex items-center justify-center rounded-full px-4 md:px-6 h-9 md:h-10 text-sm md:text-base bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_4px_15px_rgba(16,185,129,0.25)] transition-colors">
+              {"Boshlash"}
+            </Link>
           </div>
         </div>
       </nav>
@@ -298,15 +318,11 @@ export default function LandingPage() {
               Disciplix AI yordamida xarajatlaringizni nazorat qiladi, maqsadlaringizni kuzatadi va moliyaviy intizomni shakllantiradi.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="https://t.me/disciplixbot" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full rounded-full text-base bg-[#10B981] hover:bg-[#059669] text-white font-bold px-8 h-14 shadow-[0_8px_20px_rgba(16,185,129,0.3)]">
-                  Bepul boshlash <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+              <Link href="https://t.me/disciplixbot" className="w-full sm:w-auto inline-flex items-center justify-center rounded-full text-base bg-[#10B981] hover:bg-[#059669] text-white font-bold px-8 h-14 shadow-[0_8px_20px_rgba(16,185,129,0.3)] transition-colors text-center">
+                {"Bepul boshlash"} <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="https://t.me/disciplixbot" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full rounded-full text-base bg-white border-gray-200 text-gray-700 font-bold px-8 h-14 hover:bg-gray-50 hover:text-[#10B981] shadow-sm">
-                  Telegram Botni ochish
-                </Button>
+              <Link href="https://t.me/disciplixbot" className="w-full sm:w-auto inline-flex items-center justify-center rounded-full text-base bg-white border border-gray-200 text-gray-700 font-bold px-8 h-14 hover:bg-gray-50 hover:text-[#10B981] shadow-sm transition-colors text-center">
+                {"Telegram Botni ochish"}
               </Link>
             </div>
           </motion.div>
@@ -501,8 +517,8 @@ export default function LandingPage() {
         <section className="py-24 bg-[#F8F9FB] relative overflow-hidden">
           <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 space-y-6">
-              <h2 className="text-3xl md:text-5xl font-extrabold text-[#1A1D1E]">Shaxsiy AI Moliyaviy Murabbiy</h2>
-              <p className="text-lg text-gray-500 font-medium leading-relaxed">Oddiy tilda yozing. Sun'iy intellekt uni darhol tushunadi va bazaga yozadi. Endi menyularda tentirashga hojat yo'q.</p>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-[#1A1D1E]">{"Shaxsiy AI Moliyaviy Murabbiy"}</h2>
+              <p className="text-lg text-gray-500 font-medium leading-relaxed">{"Oddiy tilda yozing. Sun'iy intellekt uni darhol tushunadi va bazaga yozadi. Endi menyularda tentirashga hojat yo'q."}</p>
               <ul className="space-y-4 mt-8">
                 <li className="flex items-center space-x-3 text-gray-600 font-bold"><CheckCircle className="text-[#10B981] w-6 h-6" /> <span>Xarajatlarni kategoriyalarga avtomatik ajratish</span></li>
                 <li className="flex items-center space-x-3 text-gray-600 font-bold"><CheckCircle className="text-[#10B981] w-6 h-6" /> <span>Kelajak uchun byudjet maslahatlari</span></li>
@@ -533,16 +549,16 @@ export default function LandingPage() {
                     ) : msg.type === 'expense' ? (
                       <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex justify-start">
                         <div className="bg-white text-[#1A1D1E] px-5 py-4 rounded-2xl rounded-tl-sm text-[15px] max-w-[85%] space-y-2 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] font-medium">
-                          <p>✅ 80,000 UZS <b className="text-[#10B981]">"Oziq-ovqat"</b> kategoriyasiga xarajat sifatida yozildi.</p>
-                          <p className="text-xs text-gray-500 leading-relaxed mt-2">Sizning bugungi limitingiz 120,000 UZS edi. Kunlik limitingizdan 40,000 UZS qoldi. Yaxshi ketyapsiz!</p>
+                          <p>{"✅ 80,000 UZS "} <b className="text-[#10B981]">{"\"Oziq-ovqat\""}</b> {" kategoriyasiga xarajat sifatida yozildi."}</p>
+                          <p className="text-xs text-gray-500 leading-relaxed mt-2">{"Sizning bugungi limitingiz 120,000 UZS edi. Kunlik limitingizdan 40,000 UZS qoldi. Yaxshi ketyapsiz!"}</p>
                         </div>
                       </motion.div>
                     ) : (
                       <motion.div key={idx} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
                         <div className="bg-white text-[#1A1D1E] px-5 py-4 rounded-2xl rounded-tl-sm text-[15px] max-w-[85%] space-y-3 border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] font-medium">
-                          <p>Mendan to'liq foydalanish va ma'lumotlarni saqlash uchun Telegram botimizga tashrif buyuring! 🤖</p>
-                          <Link href="https://t.me/disciplixbot" className="block w-full">
-                            <Button size="sm" className="w-full bg-[#10B981] hover:bg-[#059669] text-white rounded-xl shadow-sm">Telegram Botga o'tish</Button>
+                          <p>{"Mendan to'liq foydalanish va ma'lumotlarni saqlash uchun Telegram botimizga tashrif buyuring! 🤖"}</p>
+                          <Link href="https://t.me/disciplixbot" className="block w-full text-center bg-[#10B981] hover:bg-[#059669] text-white rounded-xl shadow-sm text-sm font-bold py-2">
+                            {"Telegram Botga o'tish"}
                           </Link>
                         </div>
                       </motion.div>
@@ -588,8 +604,8 @@ export default function LandingPage() {
                   ))}
                 </CardContent>
                 <CardFooter className="p-6 md:p-8">
-                  <Link href="https://t.me/disciplixbot" className="w-full">
-                    <Button variant="outline" className="w-full rounded-full h-14 border-gray-200 text-gray-600 font-bold hover:bg-gray-50">Hozir boshlash</Button>
+                  <Link href="https://t.me/disciplixbot" className="w-full inline-flex items-center justify-center rounded-full h-14 border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 bg-white transition-colors text-center text-base">
+                    {"Hozir boshlash"}
                   </Link>
                 </CardFooter>
               </Card>
@@ -600,7 +616,7 @@ export default function LandingPage() {
                 <CardHeader className="p-6 md:p-8 relative z-10">
                   <CardTitle className="text-xl md:text-2xl font-extrabold flex items-center text-white">Premium <Star className="ml-2 w-4 h-4 md:w-5 md:h-5 text-yellow-300 fill-current" /></CardTitle>
                   <div className="text-3xl md:text-4xl font-extrabold mt-4 mb-2 text-white">20,000 <span className="text-base md:text-lg text-emerald-100 font-bold">UZS/oy</span></div>
-                  <CardDescription className="text-emerald-50 font-medium">To'liq moliyaviy nazorat</CardDescription>
+                  <CardDescription className="text-emerald-50 font-medium">{"To'liq moliyaviy nazorat"}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 px-8 relative z-10">
                   {['Cheksiz xarajat, maqsad va rejalar', 'Ovozli boshqaruv va AI', 'Kengaytirilgan analitika', 'PDF va Excel eksport', 'Prioritet yordam'].map((item, i) => (
@@ -608,8 +624,8 @@ export default function LandingPage() {
                   ))}
                 </CardContent>
                 <CardFooter className="p-6 md:p-8 relative z-10">
-                  <Link href="https://t.me/disciplixbot" className="w-full">
-                    <Button className="w-full rounded-full h-14 bg-white hover:bg-gray-50 text-[#10B981] font-extrabold shadow-md">Premium olish</Button>
+                  <Link href="https://t.me/disciplixbot" className="w-full inline-flex items-center justify-center rounded-full h-14 bg-white hover:bg-gray-50 text-[#10B981] font-extrabold shadow-md transition-colors text-center text-base">
+                    {"Premium olish"}
                   </Link>
                 </CardFooter>
               </Card>
@@ -620,15 +636,13 @@ export default function LandingPage() {
         {/* 8. Final CTA Section */}
         <section className="py-20 relative text-center bg-[#F8F9FB]">
           <div className="container mx-auto px-6 relative z-10">
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-[#1A1D1E]">Bugundan moliyaviy intizomni boshlang</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-[#1A1D1E]">{"Bugundan moliyaviy intizomni boshlang"}</h2>
             <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-10">
-              Disciplix bilan har bir so'm maqsadingizga xizmat qiladi. Intizomli bo'ling, boy bo'ling.
+              {"Disciplix bilan har bir so'm maqsadingizga xizmat qiladi. Intizomli bo'ling, boy bo'ling."}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="https://t.me/disciplixbot">
-                <Button size="lg" className="w-full sm:w-auto rounded-full text-base px-10 h-14 bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_8px_20px_rgba(16,185,129,0.25)]">
-                  Hozir boshlash
-                </Button>
+              <Link href="https://t.me/disciplixbot" className="w-full sm:w-auto inline-flex items-center justify-center rounded-full text-base px-10 h-14 bg-[#10B981] hover:bg-[#059669] text-white font-bold shadow-[0_8px_20px_rgba(16,185,129,0.25)] transition-colors text-center">
+                {"Hozir boshlash"}
               </Link>
             </div>
           </div>

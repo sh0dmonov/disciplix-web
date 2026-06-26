@@ -30,7 +30,7 @@ export default function DashboardPage() {
           <CardContent>
             <div className="text-3xl font-bold">{mockStats.totalBalance.toLocaleString()} UZS</div>
             <p className="text-xs text-[#10B981] flex items-center mt-2">
-              <ArrowUpRight className="w-3 h-3 mr-1" /> +12% o'tgan oydan
+              <ArrowUpRight className="w-3 h-3 mr-1" /> {"+12% o'tgan oydan"}
             </p>
           </CardContent>
         </Card>
@@ -109,7 +109,7 @@ export default function DashboardPage() {
                     <div className="h-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] rounded-full" style={{ width: `${goal.percentage}%` }}></div>
                   </div>
                   <div className="flex justify-between text-xs text-gray-500">
-                    <span>Yig'ildi: {goal.current.toLocaleString()} UZS</span>
+                    <span>{"Yig'ildi:"} {goal.current.toLocaleString()} UZS</span>
                     <span>Qoldi: {(goal.target - goal.current).toLocaleString()} UZS</span>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
           <Card className="border-white/10">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>So'nggi O'tkazmalar</CardTitle>
+                <CardTitle>{"So'nggi O'tkazmalar"}</CardTitle>
                 <MoreHorizontal className="w-5 h-5 text-gray-400 cursor-pointer" />
               </div>
             </CardHeader>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                 </div>
               ))}
               <button className="w-full py-2 mt-4 text-sm text-[#7C3AED] hover:bg-[#7C3AED]/10 rounded-lg transition-colors border border-dashed border-[#7C3AED]/30">
-                Barcha tarixni ko'rish
+                {"Barcha tarixni ko'rish"}
               </button>
             </CardContent>
           </Card>
