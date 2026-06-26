@@ -310,11 +310,11 @@ export default function LandingPage() {
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#10B981] mr-2"></span>
               Orzular Sari Yo&apos;l
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-[#1A1D1E]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.2] text-[#1A1D1E] pb-2">
               Moliyangizni boshqaring. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] to-[#059669]">Orzularingizga erishing.</span>
             </h1>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed pb-4">
               Disciplix AI yordamida xarajatlaringizni nazorat qiladi, maqsadlaringizni kuzatadi va moliyaviy intizomni shakllantiradi.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
@@ -610,25 +610,27 @@ export default function LandingPage() {
                 </CardFooter>
               </Card>
               
-              <Card className="relative bg-[#10B981] border-none rounded-[32px] transform mt-6 md:mt-0 md:-translate-y-4 shadow-[0_20px_40px_rgba(16,185,129,0.25)] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
-                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-white text-[#10B981] text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md">Tavsiya etiladi</div>
-                <CardHeader className="p-6 md:p-8 relative z-10">
-                  <CardTitle className="text-xl md:text-2xl font-extrabold flex items-center text-white">Premium <Star className="ml-2 w-4 h-4 md:w-5 md:h-5 text-yellow-300 fill-current" /></CardTitle>
-                  <div className="text-3xl md:text-4xl font-extrabold mt-4 mb-2 text-white">20,000 <span className="text-base md:text-lg text-emerald-100 font-bold">UZS/oy</span></div>
-                  <CardDescription className="text-emerald-50 font-medium">{"To'liq moliyaviy nazorat"}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4 px-8 relative z-10">
-                  {['Cheksiz xarajat, maqsad va rejalar', 'Ovozli boshqaruv va AI', 'Kengaytirilgan analitika', 'PDF va Excel eksport', 'Prioritet yordam'].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-3 text-[15px] font-bold text-white"><CheckCircle className="text-white w-5 h-5" /> <span>{item}</span></div>
-                  ))}
-                </CardContent>
-                <CardFooter className="p-6 md:p-8 relative z-10">
-                  <Link href="https://t.me/disciplixbot" className="w-full inline-flex items-center justify-center rounded-full h-14 bg-white hover:bg-gray-50 text-[#10B981] font-extrabold shadow-md transition-colors text-center text-base">
-                    {"Premium olish"}
-                  </Link>
-                </CardFooter>
-              </Card>
+              <div className="relative transform mt-6 md:mt-0 md:-translate-y-4 z-10">
+                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-white text-[#10B981] text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">{"Tavsiya etiladi"}</div>
+                <Card className="relative bg-[#10B981] border-none rounded-[32px] shadow-[0_20px_40px_rgba(16,185,129,0.25)] overflow-hidden h-full">
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
+                  <CardHeader className="p-6 md:p-8 relative z-10">
+                    <CardTitle className="text-xl md:text-2xl font-extrabold flex items-center text-white">Premium <Star className="ml-2 w-4 h-4 md:w-5 md:h-5 text-yellow-300 fill-current" /></CardTitle>
+                    <div className="text-3xl md:text-4xl font-extrabold mt-4 mb-2 text-white">20,000 <span className="text-base md:text-lg text-emerald-100 font-bold">UZS/oy</span></div>
+                    <CardDescription className="text-emerald-50 font-medium">{"To'liq moliyaviy nazorat"}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4 px-8 relative z-10">
+                    {['Cheksiz xarajat, maqsad va rejalar', 'Ovozli boshqaruv va AI', 'Kengaytirilgan analitika', 'PDF va Excel eksport', 'Prioritet yordam'].map((item, i) => (
+                      <div key={i} className="flex items-center space-x-3 text-[15px] font-bold text-white"><CheckCircle className="text-white w-5 h-5" /> <span>{item}</span></div>
+                    ))}
+                  </CardContent>
+                  <CardFooter className="p-6 md:p-8 relative z-10">
+                    <Link href="https://t.me/disciplixbot" className="w-full inline-flex items-center justify-center rounded-full h-14 bg-white hover:bg-gray-50 text-[#10B981] font-extrabold shadow-md transition-colors text-center text-base">
+                      {"Premium olish"}
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
