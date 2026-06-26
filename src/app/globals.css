@@ -4,16 +4,16 @@
   --color-primary: #7C3AED;
   --color-secondary: #2563EB;
   --color-success: #10B981;
-  --color-background: #09090B;
-  --color-foreground: #ffffff;
+  --color-background: #F2FAF5;
+  --color-foreground: #1A1D1E;
   --color-card: rgba(255,255,255,0.05);
   --color-border: rgba(255,255,255,0.08);
   --font-sans: var(--font-inter);
 }
 
 :root {
-  --background: #09090B;
-  --foreground: #ffffff;
+  --background: #F2FAF5;
+  --foreground: #1A1D1E;
 }
 
 body {

@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uz" className={`${inter.variable} dark antialiased`}>
+    <html lang="uz" className={`${inter.variable} antialiased`}>
       <body className="min-h-screen bg-background text-foreground flex flex-col">{children}</body>
     </html>
   );

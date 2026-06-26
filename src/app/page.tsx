@@ -144,18 +144,18 @@ export default function LandingPage() {
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-20 h-20 rounded-full bg-[#F8F9FB] overflow-hidden border-2 border-gray-100">
+                    <div className="w-20 h-20 rounded-full bg-[#E5F2EA] overflow-hidden border-2 border-gray-100">
                       <Image src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin&backgroundColor=10B981" alt="avatar" width={80} height={80} unoptimized className="w-full h-full object-cover" />
                     </div>
                     <Button variant="outline" className="rounded-full border-gray-200 font-bold text-gray-600">{"Rasm o'zgartirish"}</Button>
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Ism Familiya</label>
-                    <input type="text" value="Sardor M." className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-3 font-extrabold text-[#1A1D1E] focus:outline-none" readOnly />
+                    <input type="text" value="Sardor M." className="w-full bg-[#E5F2EA] border border-gray-200 rounded-xl px-4 py-3 font-extrabold text-[#1A1D1E] focus:outline-none" readOnly />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Telefon raqam</label>
-                    <input type="text" value="+998 90 123 45 67" className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-3 font-extrabold text-gray-500 focus:outline-none" readOnly />
+                    <input type="text" value="+998 90 123 45 67" className="w-full bg-[#E5F2EA] border border-gray-200 rounded-xl px-4 py-3 font-extrabold text-gray-500 focus:outline-none" readOnly />
                   </div>
                 </CardContent>
               </Card>
@@ -190,7 +190,7 @@ export default function LandingPage() {
       case 'Hisobotlar':
         return (
           <div className="flex flex-col items-center justify-center h-full min-h-[400px] animate-in fade-in duration-500">
-             <div className="w-20 h-20 bg-[#F8F9FB] rounded-full flex items-center justify-center mb-6">
+             <div className="w-20 h-20 bg-[#E5F2EA] rounded-full flex items-center justify-center mb-6">
                 <Lock className="w-8 h-8 text-[#10B981]" />
              </div>
              <h3 className="text-2xl font-extrabold text-[#1A1D1E] mb-2">{activeTab} {"bo'limi"}</h3>
@@ -217,7 +217,7 @@ export default function LandingPage() {
                 { title: "Oylik Xarajat", val: "-3,400,000 UZS", color: "text-red-500" },
                 { title: "Tejamkorlik Darajasi", val: "57%", color: "text-[#0EA5E9]" }
               ].map((stat, i) => (
-                <Card key={i} className="bg-[#F8F9FB] border-none shadow-none rounded-[20px]">
+                <Card key={i} className="bg-[#E5F2EA] border-none shadow-none rounded-[20px]">
                   <CardHeader className="p-4 md:p-5 pb-2"><CardTitle className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wider">{stat.title}</CardTitle></CardHeader>
                   <CardContent className="p-4 md:p-5 pt-0"><div className={`text-xl md:text-2xl font-extrabold ${stat.color}`}>{stat.val}</div></CardContent>
                 </Card>
@@ -269,13 +269,13 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#1A1D1E] selection:bg-[#10B981] selection:text-white overflow-hidden relative font-sans">
+    <div className="min-h-screen bg-[#F2FAF5] text-[#1A1D1E] selection:bg-[#10B981] selection:text-white overflow-hidden relative font-sans">
       {/* Background soft shapes */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#10B981] blur-[140px] opacity-[0.07] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#0EA5E9] blur-[140px] opacity-[0.04] pointer-events-none" />
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F8F9FB]/80 backdrop-blur-md border-b border-gray-200/50">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F2FAF5]/80 backdrop-blur-md border-b border-gray-200/50">
         <div className="container mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg md:rounded-xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center font-bold text-white shadow-sm">
@@ -332,7 +332,7 @@ export default function LandingPage() {
             className="lg:w-1/2 mt-16 lg:mt-0 relative z-10 w-full"
           >
             <div className="relative rounded-[32px] bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.08)] transform lg:rotate-1 lg:hover:rotate-0 transition-transform duration-500 border border-gray-100 max-w-2xl mx-auto w-full overflow-hidden sm:overflow-visible">
-              <div className="rounded-[24px] overflow-hidden bg-[#F8F9FB] border border-gray-100 relative min-h-[300px] flex flex-col">
+              <div className="rounded-[24px] overflow-hidden bg-[#E5F2EA] border border-gray-100 relative min-h-[300px] flex flex-col">
                 {/* Mockup Topbar (macOS style) */}
                 <div className="h-10 bg-white border-b border-gray-100 flex items-center px-4 space-x-2 shrink-0">
                   <div className="w-3 h-3 rounded-full bg-red-400"></div>
@@ -408,7 +408,7 @@ export default function LandingPage() {
         </section>
 
         {/* 2. Features Section */}
-        <section id="features" className="py-24 relative bg-white">
+        <section id="features" className="py-24 relative bg-transparent">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-[#1A1D1E]">Nima uchun Disciplix?</h2>
@@ -428,7 +428,7 @@ export default function LandingPage() {
                 { icon: Smartphone, title: "Telegram Integratsiyasi", desc: "Barcha funksiyalarni to'g'ridan-to'g'ri Telegram ichida ishlatishingiz mumkin." }
               ].map((feature, i) => (
                 <motion.div key={i} variants={fadeIn}>
-                  <Card className="h-full hover:-translate-y-1 transition-transform duration-300 border-gray-100 bg-[#F8F9FB] shadow-none rounded-[24px]">
+                  <Card className="h-full hover:-translate-y-1 transition-transform duration-300 border-gray-100 bg-[#E5F2EA] shadow-none rounded-[24px]">
                     <CardHeader>
                       <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-4 text-[#10B981]">
                         <feature.icon className="w-7 h-7" />
@@ -446,13 +446,13 @@ export default function LandingPage() {
         </section>
 
         {/* 3. Dashboard Showcase Section */}
-        <section id="dashboard" className="py-24 border-y border-gray-100 bg-[#F8F9FB]">
+        <section id="dashboard" className="py-24 border-y border-gray-100 bg-[#F2FAF5]">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-16 text-[#1A1D1E]">Zamonaviy Boshqaruv Paneli</h2>
             
             <div className="rounded-[32px] border border-gray-200 bg-white overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.05)] relative max-w-6xl mx-auto flex flex-col md:flex-row text-left min-h-[600px]">
               {/* Sidebar */}
-              <div className="w-full md:w-64 bg-[#F8F9FB] md:border-r border-b md:border-b-0 border-gray-100 p-4 md:p-6 space-y-4 md:space-y-6 flex-shrink-0">
+              <div className="w-full md:w-64 bg-[#E5F2EA] md:border-r border-b md:border-b-0 border-gray-100 p-4 md:p-6 space-y-4 md:space-y-6 flex-shrink-0">
                 <div className="hidden md:flex items-center space-x-2 text-xl font-extrabold text-[#1A1D1E] mb-8">
                   <div className="w-6 h-6 rounded-lg bg-[#10B981]"></div>
                   <span>Disciplix</span>
@@ -479,7 +479,7 @@ export default function LandingPage() {
         </section>
 
         {/* 4. Goal Tracking Section */}
-        <section className="py-24 relative bg-white">
+        <section className="py-24 relative bg-transparent">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-16 text-center text-[#1A1D1E]">Maqsadlarga erishing</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -499,7 +499,7 @@ export default function LandingPage() {
                         <span className="text-[#10B981] font-bold">{goal.current}</span>
                         <span className="text-gray-500 font-bold">{goal.progress}%</span>
                       </div>
-                      <div className="h-3 bg-[#F8F9FB] rounded-full overflow-hidden">
+                      <div className="h-3 bg-[#E5F2EA] rounded-full overflow-hidden">
                         <motion.div 
                           initial={{ width: 0 }} whileInView={{ width: `${goal.progress}%` }} transition={{ duration: 1, delay: 0.2 }}
                           className="h-full bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full" 
@@ -514,7 +514,7 @@ export default function LandingPage() {
         </section>
 
         {/* 5. AI Assistant Section */}
-        <section className="py-24 bg-[#F8F9FB] relative overflow-hidden">
+        <section className="py-24 bg-[#F2FAF5] relative overflow-hidden">
           <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 space-y-6">
               <h2 className="text-3xl md:text-5xl font-extrabold text-[#1A1D1E]">{"Shaxsiy AI Moliyaviy Murabbiy"}</h2>
@@ -538,7 +538,7 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent ref={chatContainerRef} className="p-6 space-y-4 h-72 overflow-y-auto scrollbar-none bg-[#F8F9FB]/50">
+                <CardContent ref={chatContainerRef} className="p-6 space-y-4 h-72 overflow-y-auto scrollbar-none bg-[#E5F2EA]/50">
                   {chatMessages.map((msg, idx) => (
                     msg.role === 'user' ? (
                       <motion.div key={idx} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex justify-end">
@@ -570,7 +570,7 @@ export default function LandingPage() {
                     <input 
                       type="text" 
                       placeholder="Xabar yozish..." 
-                      className="w-full bg-[#F8F9FB] border border-gray-200 rounded-full px-5 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all text-[#1A1D1E]" 
+                      className="w-full bg-[#E5F2EA] border border-gray-200 rounded-full px-5 py-3 pr-12 text-sm font-medium focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all text-[#1A1D1E]" 
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
@@ -586,7 +586,7 @@ export default function LandingPage() {
         </section>
 
         {/* 6. Premium Pricing Section */}
-        <section id="pricing" className="py-24 bg-white">
+        <section id="pricing" className="py-24 bg-[#F2FAF5]">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-[#1A1D1E]">Oddiy va Tushunarli Tariflar</h2>
@@ -611,7 +611,7 @@ export default function LandingPage() {
               </Card>
               
               <div className="relative transform mt-6 md:mt-0 md:-translate-y-4 z-10">
-                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-[#1A1D1E] text-white text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">{"Tavsiya etiladi"}</div>
+                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-white text-[#10B981] text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">{"Tavsiya etiladi"}</div>
                 <Card className="relative bg-[#10B981] border-none rounded-[32px] shadow-[0_20px_40px_rgba(16,185,129,0.25)] overflow-hidden h-full">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
                   <CardHeader className="p-6 md:p-8 relative z-10">
@@ -636,7 +636,7 @@ export default function LandingPage() {
         </section>
 
         {/* 8. Final CTA Section */}
-        <section className="py-20 relative text-center bg-[#F8F9FB]">
+        <section className="py-20 relative text-center bg-[#F2FAF5]">
           <div className="container mx-auto px-6 relative z-10">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-[#1A1D1E]">{"Bugundan moliyaviy intizomni boshlang"}</h2>
             <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto mb-10">
@@ -652,7 +652,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white py-8">
+      <footer className="border-t border-gray-200 bg-transparent py-8">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           <div className="space-y-4 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2">
