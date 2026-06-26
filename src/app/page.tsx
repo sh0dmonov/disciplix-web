@@ -611,7 +611,7 @@ export default function LandingPage() {
               </Card>
               
               <div className="relative transform mt-6 md:mt-0 md:-translate-y-4 z-10">
-                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-white text-[#10B981] text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">{"Tavsiya etiladi"}</div>
+                <div className="absolute top-0 right-4 md:right-8 transform -translate-y-1/2 bg-[#1A1D1E] text-white text-[10px] md:text-xs font-extrabold px-3 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-wider shadow-md z-20">{"Tavsiya etiladi"}</div>
                 <Card className="relative bg-[#10B981] border-none rounded-[32px] shadow-[0_20px_40px_rgba(16,185,129,0.25)] overflow-hidden h-full">
                   <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
                   <CardHeader className="p-6 md:p-8 relative z-10">
